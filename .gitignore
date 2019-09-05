@@ -1,0 +1,5 @@
+main*
+*.exe
+*.in
+*.o
+*.out
