@@ -34,19 +34,26 @@ LinkedList* searchLinkedList(LinkedList* list, char* key) {
   return searchLinkedList(list->next, key);
 }
 
-int removeFromLinkedList(LinkedList* list, char* key) {
-  if (list->next == NULL) {
-    return -1;
-  }
-  if (strcmp(list->next->key, key) == 0) {
-    LinkedList* remover = list->next;
-    list->next = remover->next;
-    
-    free(remover);
-    return 0;
+ LinkedList* removeFromLinkedList(LinkedList* list, char* key) {
+  if (list == NULL) {
+    return NULL;
   }
 
-  return removeFromLinkedList(list->next, key);
+  // Check if the current element is the one to be removed
+  if (strcmp(list->key, key) == 0) {
+    LinkedList* temp;
+
+    temp = list->next;
+
+    free(list);
+
+    return temp;
+  }
+
+  list->next = removeFromLinkedList(list->next, key);
+
+  return list;
+  
 }
 
 void printLinkedList(LinkedList* list) {

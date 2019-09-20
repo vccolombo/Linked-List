@@ -12,7 +12,7 @@ struct linkedList {
 LinkedList* createLinkedList();
 LinkedList* insertLinkedList(LinkedList* list, char* key, int value);
 LinkedList* searchLinkedList(LinkedList* list, char* key);
-int removeFromLinkedList(LinkedList* list, char* key);
+LinkedList* removeFromLinkedList(LinkedList* list, char* key);
 void printLinkedList(LinkedList* list);
 
 #endif
