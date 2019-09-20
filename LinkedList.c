@@ -4,30 +4,26 @@
 
 
 LinkedList* createLinkedList() {
-  LinkedList* root = malloc(sizeof(LinkedList));
-  strcpy(root->key, "\0");
-  root->value = NULL;
-  root->next = NULL;
+  LinkedList* root = NULL;
 
   return root;
 }
 
-LinkedList* insertLinkedList(LinkedList* list, char key[100], int value) {
-  if (list->next == NULL) {
-    LinkedList* insert = malloc(sizeof(LinkedList));
-    list->next = insert;
-
-    strcpy(insert->key, key);
-    insert->value = value;
-    insert->next = NULL;
-
-    return insert;
+LinkedList* insertLinkedList(LinkedList* list, char* key, int value) {
+  LinkedList* to_add = (LinkedList*) malloc(sizeof(LinkedList));
+  if (to_add == NULL) {
+    return NULL; // No memory to insert
   }
-
-  return insertLinkedList(list->next, key, value);
+  
+  to_add->key = key;
+  to_add->value = value;
+  to_add->next = list;
+  list = to_add;
+  
+  return list;
 }
 
-LinkedList* searchLinkedList(LinkedList* list, char key[100]) {
+LinkedList* searchLinkedList(LinkedList* list, char* key) {
   if (strcmp(list->key, key) == 0) {
     return list;
   }
@@ -37,7 +33,7 @@ LinkedList* searchLinkedList(LinkedList* list, char key[100]) {
   return searchLinkedList(list->next, key);
 }
 
-int removeFromLinkedList(LinkedList* list, char key[100]) {
+int removeFromLinkedList(LinkedList* list, char* key) {
   if (list->next == NULL) {
     return -1;
   }
