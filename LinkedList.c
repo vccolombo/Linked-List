@@ -1,6 +1,7 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 
 LinkedList* createLinkedList() {
@@ -12,14 +13,14 @@ LinkedList* createLinkedList() {
 LinkedList* insertLinkedList(LinkedList* list, char* key, int value) {
   LinkedList* to_add = (LinkedList*) malloc(sizeof(LinkedList));
   if (to_add == NULL) {
-    return NULL; // No memory to insert
+    exit(0); // No memory to insert
   }
   
   to_add->key = key;
   to_add->value = value;
   to_add->next = list;
   list = to_add;
-  
+
   return list;
 }
 
@@ -46,4 +47,12 @@ int removeFromLinkedList(LinkedList* list, char* key) {
   }
 
   return removeFromLinkedList(list->next, key);
+}
+
+void printLinkedList(LinkedList* list) {
+  LinkedList* curr;
+  for (curr = list; curr; curr = curr->next) {
+    printf("Key: %s  Value: %d\n", curr->key, curr->value);
+  }
+  
 }
