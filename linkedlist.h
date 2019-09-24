@@ -1,18 +1,22 @@
 #ifndef LINKEDLIST_H_
 #define LINKEDLIST_H_
 
+#include <stdlib.h>
+
+#define key_type char
+
 typedef struct linkedList LinkedList;
 
 struct linkedList {
-  char* key;
-  int value;
+  key_type* key;
+  void *data;
   LinkedList* next;
 };
 
 LinkedList* createLinkedList();
-LinkedList* insertLinkedList(LinkedList* list, char* key, int value);
+void pushLinkedList(LinkedList** head, key_type* key, void* new_data, size_t data_size);
 LinkedList* searchLinkedList(LinkedList* list, char* key);
 LinkedList* removeFromLinkedList(LinkedList* list, char* key);
-void printLinkedList(LinkedList* list);
+void printLinkedList(LinkedList* list, void (*fptr)(void *));
 
 #endif

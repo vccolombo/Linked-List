@@ -1,37 +1,23 @@
 #include <stdio.h>
 #include "linkedlist.h"
 
-void printNode(LinkedList* list) {
-    if (list == NULL) {
-        printf("Node is NULL\n");
-        return;
-    }
-    printf("Key: %s  Value: %d\n", list->key, list->value);  
-}
+// Function to print an integer 
+void printInt(void *n) 
+{ 
+   printf(" %d", *(int *)n); 
+} 
+  
+// Function to print a float 
+void printFloat(void *f) 
+{ 
+   printf(" %f", *(float *)f); 
+} 
 
-int main(int argc, char const *argv[])
-{
-    LinkedList* list = createLinkedList();
-    list = insertLinkedList(list, "test1", 10);
-    list = insertLinkedList(list, "test2", 20);
-    list = insertLinkedList(list, "test3", 30);
-    printf("Print entire list:\n");
-    printLinkedList(list);
-
-    printf("Print each position (test search):\n");
-    LinkedList* achado;
-    achado = searchLinkedList(list, "test1");
-    printNode(achado);
-    achado = searchLinkedList(list, "test2");
-    printNode(achado);
-    achado = searchLinkedList(list, "test3");
-    printNode(achado);
-    achado = searchLinkedList(list, "testError");
-    printNode(achado);
-
-    printf("Remove and print new list:\n");
-    list = removeFromLinkedList(list, "test3");
-    printLinkedList(list);
-    
+int main(int argc, char const *argv[]) {
+    LinkedList* list = createLinkedList(); 
+    int vetor[] = {1, 2, 3, 4, 5};
+    pushLinkedList(&list, "chave1", &vetor[0], sizeof(int));
+    pushLinkedList(&list, "chave2", &vetor[1], sizeof(int));
+    printLinkedList(list, printInt);
     return 0;
 }

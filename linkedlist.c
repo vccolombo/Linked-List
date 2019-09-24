@@ -10,21 +10,26 @@ LinkedList* createLinkedList() {
   return root;
 }
 
-LinkedList* insertLinkedList(LinkedList* list, char* key, int value) {
+void pushLinkedList(LinkedList** head, key_type* new_key, void* new_data, size_t data_size) {
   LinkedList* to_add = (LinkedList*) malloc(sizeof(LinkedList));
   if (to_add == NULL) {
     exit(0); // No memory to insert
   }
-  
-  to_add->key = key;
-  to_add->value = value;
-  to_add->next = list;
-  list = to_add;
 
-  return list;
+  to_add->key = new_key;
+  to_add->data = malloc(data_size);
+  to_add->next = (*head);
+
+  int i;
+  for (i = 0; i < data_size; i++) {
+    *(char *)(to_add->data+i) = *(char*)(new_data+i);
+  }
+  
+
+  (*head) = to_add;
 }
 
-LinkedList* searchLinkedList(LinkedList* list, char* key) {
+LinkedList* searchLinkedList(LinkedList* list, key_type* key) {
   if (strcmp(list->key, key) == 0) {
     return list;
   }
@@ -56,10 +61,9 @@ LinkedList* searchLinkedList(LinkedList* list, char* key) {
   
 }
 
-void printLinkedList(LinkedList* list) {
-  LinkedList* curr;
-  for (curr = list; curr; curr = curr->next) {
-    printf("Key: %s  Value: %d\n", curr->key, curr->value);
-  }
-  
+void printLinkedList(LinkedList* list, void (*fptr)(void *)) {
+  while (list != NULL) { 
+        (*fptr)(list->data); 
+        list = list->next; 
+  }  
 }
