@@ -30,7 +30,7 @@ void pushLinkedList(LinkedList** head, key_type* new_key, void* new_data, size_t
 }
 
 LinkedList* searchLinkedList(LinkedList* list, key_type* key) {
-  if (strcmp(list->key, key) == 0) {
+  if(list->key == key) {
     return list;
   }
   if (list->next == NULL) {
@@ -66,4 +66,5 @@ void printLinkedList(LinkedList* list, void (*fptr)(void *)) {
         (*fptr)(list->data); 
         list = list->next; 
   }  
+  printf("\n");
 }
