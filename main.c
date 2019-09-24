@@ -21,11 +21,13 @@ int main(int argc, char const *argv[]) {
     pushLinkedList(&list, "chave3", &vetor[2], sizeof(int));
     pushLinkedList(&list, "chave4", &vetor[3], sizeof(int));
     pushLinkedList(&list, "chave5", &vetor[4], sizeof(int));
-    pushLinkedList(&list, "chave1", &vetor[4], sizeof(int));
+    printLinkedList(list, printInt);
+
+    pushLinkedList(&list, "chave5", &vetor[0], sizeof(int));
     printLinkedList(list, printInt);
 
     printInt(searchLinkedList(list, "chave3")->data);
     printf("\n");
-    
+
     return 0;
 }

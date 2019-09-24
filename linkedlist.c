@@ -16,6 +16,15 @@ void pushLinkedList(LinkedList** head, key_type* new_key, void* new_data, size_t
     exit(0); // No memory to insert
   }
 
+  // If key already in list, update data
+  LinkedList* search = searchLinkedList(*head, new_key);
+  if (search != NULL) {
+    search->data = new_data;
+    return;
+  }
+  
+  // else create new node
+
   to_add->key = new_key;
   to_add->data = malloc(data_size);
   to_add->next = (*head);
@@ -30,12 +39,14 @@ void pushLinkedList(LinkedList** head, key_type* new_key, void* new_data, size_t
 }
 
 LinkedList* searchLinkedList(LinkedList* list, key_type* key) {
+  if (list == NULL) {
+    return NULL;
+  }
+  
   if(list->key == key) {
     return list;
   }
-  if (list->next == NULL) {
-    return NULL;
-  }
+
   return searchLinkedList(list->next, key);
 }
 
