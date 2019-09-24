@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "LinkedList.h"
+#include "linkedlist.h"
 
 void printNode(LinkedList* list) {
     if (list == NULL) {
