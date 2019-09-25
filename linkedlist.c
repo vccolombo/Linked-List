@@ -50,28 +50,30 @@ LinkedList* searchLinkedList(LinkedList* list, key_type* key) {
   return searchLinkedList(list->next, key);
 }
 
-void removeFromLinkedList(LinkedList* list, char* key) {
+void removeFromLinkedList(LinkedList** head, key_type* key) {
 
-  if (list == NULL) {
+  LinkedList* curr = *head;
+
+  // Remove header if it is the key
+  if (curr != NULL && curr->key == key) {
+    *head = curr->next;
+    free(curr);
     return;
   }
 
-  if(list->key == key) {
-    printf("It's the first element in the list. Wait for a future version to remove this node.\n");
-    return;
-  }
+  while (curr->next != NULL) {
+      if (curr->next->key == key) {
+        LinkedList* to_remove = curr->next;
+        curr->next = to_remove->next;
 
-  while (list->next != NULL) {
-    if(list->next->key == key) {
-      LinkedList* to_remove = list->next;
-      list->next = to_remove->next;
-
-      free(to_remove);
-      return;
-    }
-    list = list->next;
+        free(to_remove);
+        return;
+      }
+      curr = curr->next;
   }
   
+
+
 }
 
 void printLinkedList(LinkedList* list, void (*fptr)(void *)) {

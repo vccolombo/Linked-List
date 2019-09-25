@@ -40,17 +40,18 @@ int main(int argc, char const *argv[]) {
 
 
     printf("Testing removals...\n");    
-    removeFromLinkedList(list, "chave5");
     printLinkedList(list, printInt);
-    removeFromLinkedList(list, "chave1");
+    removeFromLinkedList(&list, "chave5");
     printLinkedList(list, printInt);
-    removeFromLinkedList(list, "chave3");
+    removeFromLinkedList(&list, "chave1");
     printLinkedList(list, printInt);
-    removeFromLinkedList(list, "chaveDur");
+    removeFromLinkedList(&list, "chave3");
     printLinkedList(list, printInt);
-    removeFromLinkedList(list, "chave4");
+    removeFromLinkedList(&list, "chaveDur");
     printLinkedList(list, printInt);
-    removeFromLinkedList(list, "chave2");
+    removeFromLinkedList(&list, "chave4");
+    printLinkedList(list, printInt);
+    removeFromLinkedList(&list, "chave2");
     printLinkedList(list, printInt);
 
     return 0;

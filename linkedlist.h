@@ -15,8 +15,8 @@ struct linkedList {
 
 LinkedList* createLinkedList();
 void pushLinkedList(LinkedList** head, key_type* key, void* new_data, size_t data_size);
-LinkedList* searchLinkedList(LinkedList* list, char* key);
-void removeFromLinkedList(LinkedList* list, char* key);
+LinkedList* searchLinkedList(LinkedList* list, key_type* key);
+void removeFromLinkedList(LinkedList** list, key_type* key);
 void printLinkedList(LinkedList* list, void (*fptr)(void *));
 
 #endif
