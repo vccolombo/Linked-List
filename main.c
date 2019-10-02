@@ -13,6 +13,10 @@ void printFloat(void *f)
    printf(" %f", *(float *)f); 
 } 
 
+void printChar(void *c) {
+    printf("%c", *(char *)c);
+}
+
 int main(int argc, char const *argv[]) {
     printf("Creating list...\n");
     LinkedList* list = createLinkedList(); 
